@@ -13,7 +13,7 @@ import traceback
 logging.basicConfig(level=logging.DEBUG)
 
 # 3RD PARTY LIBS
-libdir = '/home/george/Development/e-Paper/RaspberryPi_JetsonNano/python/lib/'
+libdir = '../e-Paper/RaspberryPi_JetsonNano/python/lib/'
 try:
     sys.path.append(libdir)
     from waveshare_epd import epd7in5_HD
@@ -68,7 +68,7 @@ def initialise_display(epd, picdir, timeout):
         exit()
 
 def create_photo_list(path):
-        logging.info("Creating new list from ''%s'" % (path))
+        logging.info("Creating new list from '%s'" % (path))
         files = os.listdir(path)
         photos = []
         for f in files:
