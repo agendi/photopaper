@@ -17,18 +17,15 @@ libdir = '../e-Paper/RaspberryPi_JetsonNano/python/lib/'
 try:
     sys.path.append(libdir)
     from waveshare_epd import epd7in5_HD
-except OSError:
-    logging.warning("Waveshare epaper not attached! Using virtual diaplay")
-except ModuleNotFoundError:
-    logging.warning("Waveshare library not installed see README")
-finally:
+except:
+    logging.warning("Waveshare epaper not attached or Waveshare library not installed! Using virtual diaplay")
     from VirtualDisplay.virtualdisplay import epd7in5_HD
 
 
 # CONFIG
 MINIMUM_REFRESH = 10
 picdir = '/home/george/Pictures/'
-reload = 60
+reload = 240
 
 def main():
 
@@ -91,9 +88,8 @@ def display(epd, photos):
         fname = get_photo(photos)
 
         logging.info("displaying %s" % (fname))
-        #Himage = Image.open(fname)
-        with Image.open(fname) as Himage:
-            epd.display(epd.getbuffer(Himage))
+        Himage = Image.open(fname)
+        epd.display(epd.getbuffer(Himage))
         time.sleep(2)
 
         logging.info("Goto Sleep...")
